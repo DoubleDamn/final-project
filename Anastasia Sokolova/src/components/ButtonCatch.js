@@ -12,12 +12,6 @@ export const ButtonCatch = props => {
         </button>
       )}
 
-      {/* {props.poke.caught ? (
-        <button className='btn btn-success' onClick={props.onClick}>
-          Catch me!
-        </button>) :
-        (<button className='btn btn-success disabled'>You got it!</button>
-      )} */}
     </div>
   );
 };

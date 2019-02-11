@@ -2,7 +2,16 @@
   max-width: 240px;
 }
 .infoImg {
-  max-width: 1500px
+  max-width: 500px;
+  margin: auto
+}
+.navbar-brand {
+  font-size: 25px;
+  margin-right: 20px
+}
+.nav-link {
+  font-size: 16px;
+   margin-top: 5px 
 }
 @media (max-width: 565px) {
   .pokeImg {
@@ -10,9 +19,6 @@
   }
 }
 
-.infoImg {
-  max-width: 400px;
-}
 @media (min-width: 565px) and (max-width: 992px)  {
  .navbar-nav{
    -webkit-box-orient: horizontal;

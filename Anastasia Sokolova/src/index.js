@@ -8,11 +8,14 @@ import combineReducers from './reducer/combineReducers';
 import App from './App';
 import './style.css';
 
-const store = createStore(combineReducers, 
-  compose(   
-      applyMiddleware(thunk),
-      window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-  ));
+const store = createStore(
+  combineReducers,
+  compose(
+    applyMiddleware(thunk),
+    //delete this for IE
+    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+  )
+);
 
 ReactDOM.render(
   <Provider store={store}>
