@@ -14,11 +14,9 @@ class Home extends Component {
     e.preventDefault();
     e.target.setAttribute('disabled', 'true');
     e.target.textContent = 'You got it!';
-    e.target.classList.remove('btn-success');
-    e.target.classList.add('btn-secondary');
-   
+    e.target.classList.add('btn-lg');
     this.props.catched(poke);
-     poke.caught.push(1);
+     poke.caught.push(true);
   }
   getAll() {
     if (this.props.loadNoMore) return;

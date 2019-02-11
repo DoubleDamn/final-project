@@ -1,5 +1,4 @@
 import { actionType } from '../actions/action'
-import {typeBtn} from '../actions/actionBtn';
 
 const initState = {
   isLoading: false,
@@ -27,31 +26,19 @@ const pokemonReducer = (state = initState, action) => {
         size: action.size
       };
     case actionType.DATA_LOADED: 
-    // if(state.pokemons.length !== 0) {
       return {
         ...state,
         pokemons: [...state.pokemons, ...action.pokemons],
         isLoading: false,
         loadNoMore: ((state.pokemons.length + action.pokemons.length) !== state.size)  ? false : true
       }
-    // } else {
-    //     return {
-    //         ...state, 
-    //         pokemons: [...action.pokemons]
-    //     }
-    // }
 
     case actionType.ADD_PAGE:
       return {
         ...state,
         page: action.page
       };
-      // case typeBtn.UPDATE_BTN:
-      //  return {
-      //    ...state,
-      //    pokemons: action.pokemons.caught,
-      //    caught: action.caught
-      //  }
+
     default:
       return state;
   }

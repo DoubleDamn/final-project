@@ -2,13 +2,14 @@ import { getLength } from './actionCatch';
 import axios from 'axios';
 
 export const catchPokemon = pokemon => {
-  getLength().then(() => {
+  getLength().then(len => {
     return axios
       .post(`http://localhost:3000/caught`,
         {
+          id: len+1,
           name: pokemon.name,
           date: new Date().toLocaleDateString(),
-          id: pokemon.id,
+          pokemonId: pokemon.id,
         },
         { headers: { 'Content-Type': 'application/json' } }
       )

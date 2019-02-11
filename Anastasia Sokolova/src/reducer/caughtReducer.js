@@ -27,19 +27,13 @@ const caughtReducer = (state = initState, action) => {
         size: action.size
       };
     case actionCatch.DATA_CAUGHT_LOADED:
-    // if(state.pokemons.length !== 0) {
       return {
         ...state,
         pokemons: [...state.pokemons, ...action.pokemons],
         isLoading: false,
         loadNoMore: state.pokemons.length + action.pokemons.length !== state.size ? false : true
       }
-    // } else {
-    //     return {
-    //         ...state, 
-    //         pokemons: [...action.pokemons]
-    //     }
-    // } 
+   
     case actionCatch.ADD_CAUGHT_PAGE:
       return {
         ...state,

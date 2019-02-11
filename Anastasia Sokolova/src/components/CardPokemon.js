@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import {ButtonCatch} from './ButtonCatch';
-import BtnCatched from './BtnCathed'
+
 
 export const CardPokemon = props => {
   return (
@@ -13,14 +13,9 @@ export const CardPokemon = props => {
           className='card-img-top img-fluid pokeImg'
         />
       </Link>
-      {/* { props.poke.date  ? (<p> Date: {props.poke.date} </p>) : null} */}
-
       <h5 className='card-title text-capitalize'>{props.poke.name}</h5>
-      {(props.poke.caught.length > 0) ? 
-                    <BtnCatched/>
-                :
-                    <ButtonCatch onClick={props.click} />
-                }
+        <ButtonCatch poke={props.poke} onClick={props.click} />
+                
     </div>
   );
 };
