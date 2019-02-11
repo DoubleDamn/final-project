@@ -1,32 +1,37 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 
 class Post extends Component {
-  
-    state = {
-      pockemon: null
-    };
-  
-
-  componentDidMount() { 
-    const id = this.props.match.params.post_id;
-    axios.get('http://localhost:3000/pokemons/' + id)
-    .then(resp => {  
-      this.setState({
-        pockemon: resp.data
-      });
-    });
+  componentDidMount() {
+    this.props.getPoke(this.props.match.params.post_id);
   }
 
   render() {
-    const pockemon = this.state.pockemon ? (
-        <h4> {this.state.pockemon.name} </h4>
-    ) : (
-      <div> Loading post.. </div>
+    const idpoke = this.props.match.params.post_id;
+    return (
+      <div className ='col-sm-12 col-md-6 mx-auto text-center'>
+        {this.props.isLoading ? (
+          <p className='lead  m-3'>Loading post.. </p>
+        ) : (
+          <h3 className='card-title text-capitalize m-3'> Pokmon Card </h3>
+        )}
+        <div className='card bg-light mb-4 border-info shadow-sm mx-auto p-3'>
+          <img
+            src={require(`../../pokemons/${idpoke <= 720 ? idpoke : (idpoke % 100) + 1}.png`)}
+            alt='Img'
+            className='card-img-top text-center img-fluid infoImg'
+          />
+          <h5 className='card-title text-capitalize'> name: {this.props.pokemon.name}</h5>
+          <p> id: {this.props.pokemon.id}</p>
+          {(this.props.pokemon.date !== '') ? 
+                    <p> date={this.props.pokemon.date}</p>
+                        :
+                    <p className="card-text text-capitalize text-danger">No</p>
+                } 
+          {/* {this.props.pokemon.date !=='' ? <p> Date: {this.props.pokemon.date} </p> : null} */}
+        </div>
+      </div>
     );
-
-    return (<div>{pockemon}</div>);
   }
 }
 
-export { Post };
+export default Post;

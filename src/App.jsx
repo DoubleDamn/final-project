@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
 import { Route, Switch } from 'react-router-dom';
-
-import { About } from './components/About';
-import { Home } from './components/Home';
-import { Pockemons } from './components/Pockemons';
+import {HomeContainer} from './container/HomeContainer'
+import { CaughtContainer } from './container/CaughtContainer';
 import { Navbar } from './components/Navbar';
-import { Post } from './components/Post';
+import {PostContainer} from './container/PostContainer';
 
 class App extends Component {
   render() {
@@ -13,10 +11,9 @@ class App extends Component {
       <React.Fragment>
         <Route component={Navbar} />
         <Switch>
-          <Route exact path='/' component={Home} />
-          <Route exact path='/Pockemons' component={Pockemons} />
-          <Route exact path='/about' component={About} />
-          <Route path='/:post_id' component={Post} />
+          <Route exact path='/' component={HomeContainer} />
+          <Route exact path='/Pokemons' component={CaughtContainer} />
+          <Route path='/:post_id' component={PostContainer} />
         </Switch>
       </React.Fragment>
     );

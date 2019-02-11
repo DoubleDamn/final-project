@@ -3797,7 +3797,46 @@
       "id": 10147
     }
   ],
-  "catch": [ 
-
+  "caught": [
+    {
+      "name": "wartortle",
+      "date": "11.02.2019",
+      "id": 8
+    },
+    {
+      "name": "squirtle",
+      "date": "11.02.2019",
+      "id": 7
+    },
+    {
+      "name": "bulbasaur",
+      "date": "11.02.2019",
+      "id": 1
+    },
+    {
+      "name": "ivysaur",
+      "date": "11.02.2019",
+      "id": 2
+    },
+    {
+      "name": "blastoise",
+      "date": "11.02.2019",
+      "id": 9
+    },
+    {
+      "name": "venusaur",
+      "date": "11.02.2019",
+      "id": 3
+    },
+    {
+      "name": "arbok",
+      "date": "11.02.2019",
+      "id": 24
+    },
+    {
+      "name": "ekans",
+      "date": "11.02.2019",
+      "id": 23
+    }
   ]
 }

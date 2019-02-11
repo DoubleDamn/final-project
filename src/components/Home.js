@@ -1,78 +1,50 @@
 import React, { Component } from 'react';
-import axios from 'axios';
-import { Link } from 'react-router-dom';
-import Button from './Button'
+import { CardPokemon } from './CardPokemon';
+import { LoadMoreBtn } from './LoadMoreBtn';
 
 class Home extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      pockemons: []
-    };
-  }
   componentDidMount() {
-    axios.get('http://localhost:3000/pokemons')
-    .then(resp =>  {
-      this.setState({
-        pockemons: resp.data
-      });
-    });
+    if (this.props.page === 1) {
+      this.props.getLength();
+      this.getAll();
+    }
   }
+
+  onCatch(poke, e) {
+    e.preventDefault();
+    e.target.setAttribute('disabled', 'true');
+    e.target.textContent = 'You got it!';
+    e.target.classList.remove('btn-success');
+    e.target.classList.add('btn-secondary');
+   
+    this.props.catched(poke);
+     poke.caught.push(1);
+  }
+  getAll() {
+    if (this.props.loadNoMore) return;
+    this.props.getAll(this.props.page);
+  }
+
   render() {
-    const { pockemons } = this.state;
-    const pockemonList = pockemons.length ? (
-      pockemons.map(pockemon => {
-        return (
-          <div className='card border-light mb-3' key={pockemon.id}>
-            <div className='card-body'>
-              <Link to={'/' + pockemon.id}>
-                <p className='card-title'>{pockemon.name}</p>
-              </Link>
-              <Button/>
-            </div>
-          </div>
-        );
-      })
-    ) : (
-      <div> Loading...</div>
-    );
+    const pok = this.props.pokemons.map(poke => (
+      <CardPokemon key={poke.id} 
+     
+      poke={poke} click={this.onCatch.bind(this, poke)} />
+    ));
+
     return (
-      <table className='table'>
-        <tbody>
-          <tr>
-            <td>{pockemonList} </td>
-          </tr>
-        </tbody>
-      </table>
+      <div className='col-md-12 text-center'>
+        <h3 className='col-md-12 text-center text-md-left mt-3 mb-3'>All Pokemons</h3>
+        <div className=' d-flex justify-content-around align-items-center flex-wrap '>{pok}</div>
+
+        {this.props.loadNoMore ? (
+          <p> That's all!</p>
+        ) : (
+          <LoadMoreBtn onClick={this.getAll.bind(this)} isLoading={this.props.isLoading} />
+        )}
+      </div>
     );
   }
 }
-export {Home};
 
-//       .then(date => {
-//         let pokemons = date.map((pokemons, id) => {
-//           return (
-
-//             <div className='card border-light mb-3' key={id}>
-//               <p>id: {pokemons.id}</p>
-//               <p>Name: {pokemons.name}</p>
-//             </div>
-//           );
-//         });
-//         this.setState({ pokemons: pokemons });
-//       });
-//   }
-//   render() {
-//     return (
-//       <table className='table'>
-//       <tbody>
-//         <tr>
-//           <td>{this.state.pokemons}</td>
-//         </tr>
-//         </tbody>
-//       </table>
-//     );
-//   }
-// }
-
-// export {Home};
+export default Home;

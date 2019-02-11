@@ -1,7 +1,6 @@
 const webpack = require('webpack');
 
 module.exports = {
-
   entry: './src/index.js',
   module: {
     rules: [
@@ -9,16 +8,18 @@ module.exports = {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
         use: {
-          loader: "babel-loader"
+          loader: 'babel-loader'
         }
-        
       },
       {
         test: /\.css$/,
         use: ['style-loader', 'css-loader']
       },
-  
-        ]
+     { test: /\.(png|jpg)$/, 
+        use: {
+        loader: 'url-loader?limit=8192' }
+     }
+    ]
   },
 
   resolve: {
@@ -29,11 +30,9 @@ module.exports = {
     publicPath: '/',
     filename: 'bundle.js'
   },
-  plugins: [
-    new webpack.HotModuleReplacementPlugin()
-  ],
+  plugins: [new webpack.HotModuleReplacementPlugin()],
   devServer: {
     contentBase: './dist',
     hot: true
-  } 
+  }
 };
